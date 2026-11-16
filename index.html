@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f2">
+  <meta name="description" content="あなたのブランドやサービスの魅力を伝えるホームページテンプレートです。">
+  <title>YOUR BRAND | 次の一歩を、ここから。</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f7f2;
+      --ink: #17241f;
+      --muted: #64716b;
+      --line: #dce2db;
+      --green: #176b50;
+      --lime: #d9f36a;
+      --coral: #e8795b;
+      --content: 1180px;
+      font-family: "DM Sans", "Noto Sans JP", sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(var(--content), calc(100% - 48px)); margin-inline: auto; }
+
+    .topbar { position: absolute; z-index: 3; inset: 0 0 auto; color: white; }
+    .nav { min-height: 82px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgb(255 255 255 / 28%); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; letter-spacing: 0; }
+    .brand-mark { width: 30px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; font-size: 13px; }
+    .nav-links { display: flex; align-items: center; gap: 34px; font-size: 13px; }
+    .nav-links a:not(.nav-cta) { opacity: .88; transition: opacity .2s; }
+    .nav-links a:not(.nav-cta):hover { opacity: 1; }
+    .nav-cta { padding: 12px 17px; color: var(--ink); background: var(--lime); border-radius: 2px; font-weight: 700; }
+    .menu-toggle { display: none; width: 44px; height: 44px; color: white; background: transparent; border: 1px solid rgb(255 255 255 / 55%); border-radius: 2px; cursor: pointer; }
+
+    .hero { min-height: 690px; min-height: min(790px, 88svh); position: relative; display: flex; align-items: center; overflow: hidden; color: white; background: #27362e; }
+    .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 54%; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(13 27 21 / 78%) 0%, rgb(13 27 21 / 52%) 42%, rgb(13 27 21 / 8%) 100%), linear-gradient(0deg, rgb(13 27 21 / 30%), transparent 48%); }
+    .hero-content { position: relative; z-index: 1; padding-top: 82px; animation: arrive .7s ease-out both; }
+    .eyebrow { display: flex; align-items: center; gap: 11px; margin: 0 0 24px; font-size: 11px; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 27px; height: 2px; background: var(--lime); }
+    h1 { max-width: 720px; margin: 0; font-size: clamp(42px, 6vw, 76px); line-height: 1.28; font-weight: 600; letter-spacing: 0; }
+    .hero-copy { max-width: 510px; margin: 22px 0 32px; color: rgb(255 255 255 / 83%); font-size: 15px; line-height: 2; }
+    .button { min-height: 52px; display: inline-flex; align-items: center; justify-content: center; gap: 22px; padding: 0 20px; background: var(--lime); color: var(--ink); border: 0; border-radius: 2px; font-size: 13px; font-weight: 700; transition: background .2s, transform .2s; }
+    .button:hover { background: #e5ff83; transform: translateY(-2px); }
+    .button span { font-size: 18px; line-height: 1; }
+    .hero-note { position: absolute; z-index: 1; right: max(24px, calc((100% - var(--content)) / 2)); bottom: 30px; display: flex; align-items: center; gap: 10px; color: rgb(255 255 255 / 78%); font-size: 11px; }
+    .hero-note::before { content: ""; width: 6px; height: 6px; background: var(--lime); border-radius: 50%; }
+
+    .intro { padding: 66px 0 72px; border-bottom: 1px solid var(--line); }
+    .intro-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 70px; align-items: start; }
+    .section-label { margin: 6px 0 0; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
+    .intro h2, .section-heading { margin: 0; font-size: clamp(25px, 3vw, 36px); line-height: 1.55; font-weight: 600; letter-spacing: 0; }
+    .intro p { max-width: 650px; margin: 16px 0 0; color: var(--muted); font-size: 14px; line-height: 2; }
+
+    .services { padding: 88px 0 96px; }
+    .section-top { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 36px; }
+    .section-top .section-label { margin-bottom: 10px; }
+    .text-link { display: inline-flex; align-items: center; gap: 10px; padding-bottom: 5px; border-bottom: 1px solid var(--green); color: var(--green); font-size: 13px; font-weight: 700; white-space: nowrap; }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .service { min-height: 220px; padding: 27px 28px 28px 0; }
+    .service + .service { padding-left: 28px; border-left: 1px solid var(--line); }
+    .service-number { color: var(--coral); font-size: 12px; font-weight: 700; }
+    .service h3 { margin: 21px 0 10px; font-size: 20px; font-weight: 600; }
+    .service p { max-width: 300px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.9; }
+
+    .about { padding: 70px 0; background: #e8eee8; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    .about-image { width: 100%; aspect-ratio: 1.25; display: block; object-fit: cover; }
+    .about-copy .section-label { margin-bottom: 14px; }
+    .about-copy p { margin: 17px 0 25px; color: #53625a; font-size: 14px; line-height: 2; }
+    .stats { display: flex; gap: 44px; padding-top: 23px; border-top: 1px solid #cbd6cc; }
+    .stat strong { display: block; font-size: 27px; font-weight: 600; }
+    .stat span { color: var(--muted); font-size: 11px; }
+
+    .contact { padding: 78px 0 84px; background: var(--green); color: white; }
+    .contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .contact .section-label { margin-bottom: 12px; color: var(--lime); }
+    .contact h2 { max-width: 700px; margin: 0; font-size: clamp(27px, 4vw, 44px); line-height: 1.5; font-weight: 600; }
+    .contact .button { flex: 0 0 auto; }
+    footer { padding: 26px 0; background: #13231c; color: white; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-inner .brand { font-size: 13px; }
+    .footer-meta { display: flex; align-items: center; gap: 24px; color: rgb(255 255 255 / 68%); font-size: 11px; }
+    .copyright { color: rgb(255 255 255 / 48%); }
+    @keyframes arrive { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(var(--content), calc(100% - 40px)); }
+      .nav { min-height: 70px; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-links { position: absolute; top: 70px; left: 0; right: 0; display: none; align-items: stretch; gap: 0; padding: 10px 20px 20px; background: #17241f; }
+      .nav-links.is-open { display: flex; flex-direction: column; }
+      .nav-links a:not(.nav-cta) { padding: 14px 0; border-bottom: 1px solid rgb(255 255 255 / 15%); }
+      .nav-cta { margin-top: 14px; text-align: center; }
+      .hero { min-height: 690px; min-height: 82svh; align-items: center; }
+      .hero-image { object-position: 58% center; }
+      .hero::after { background: linear-gradient(90deg, rgb(13 27 21 / 76%), rgb(13 27 21 / 34%)), linear-gradient(0deg, rgb(13 27 21 / 36%), transparent 60%); }
+      h1 { max-width: 560px; font-size: clamp(39px, 10vw, 58px); }
+      .hero-copy { max-width: 440px; font-size: 14px; }
+      .hero-note { right: 20px; bottom: 20px; }
+      .intro { padding: 48px 0 54px; }
+      .intro-grid { grid-template-columns: 1fr; gap: 16px; }
+      .intro h2, .section-heading { font-size: 27px; }
+      .services { padding: 64px 0; }
+      .section-top { align-items: start; flex-direction: column; margin-bottom: 24px; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service { min-height: auto; padding: 22px 0; }
+      .service + .service { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+      .service h3 { margin: 12px 0 7px; }
+      .about { padding: 52px 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .about-image { aspect-ratio: 1.45; }
+      .contact { padding: 56px 0; }
+      .contact-inner { align-items: start; flex-direction: column; }
+      .footer-inner { align-items: start; flex-direction: column; }
+      .footer-meta { flex-wrap: wrap; gap: 12px 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="メインナビゲーション">
+      <a class="brand" href="#home" aria-label="YOUR BRAND ホーム"><span class="brand-mark" aria-hidden="true">Y</span> YOUR BRAND</a>
+      <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-links">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.5" /></svg>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#services">サービス</a>
+        <a href="#about">私たちについて</a>
+        <a href="#contact">お問い合わせ</a>
+        <a class="nav-cta" href="#contact">相談してみる <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <img class="hero-image" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2200&q=85" alt="自然光の入る開放的なワークスペース" fetchpriority="high">
+      <div class="hero-content wrap">
+        <p class="eyebrow">YOUR PARTNER IN WHAT'S NEXT</p>
+        <h1 id="hero-title">次の一歩を、<br>ここから。</h1>
+        <p class="hero-copy">あなたの想いやアイデアに寄り添い、確かな価値へとつなげます。まずは、これからのことを聞かせてください。</p>
+        <a class="button" href="#services">サービスを見る <span aria-hidden="true">→</span></a>
+      </div>
+      <p class="hero-note">あなたの街から、全国へ。</p>
+    </section>
+
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="wrap intro-grid">
+        <p class="section-label">A GOOD PLACE TO BEGIN</p>
+        <div>
+          <h2 id="intro-title">いい仕事は、<br>いい関係から生まれる。</h2>
+          <p>私たちは、ひとつひとつの出会いを大切にしています。課題の背景まで丁寧に向き合い、あなたに合った答えを一緒に見つけます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="services wrap" id="services" aria-labelledby="services-title">
+      <div class="section-top">
+        <div>
+          <p class="section-label">WHAT WE DO</p>
+          <h2 class="section-heading" id="services-title">サービス</h2>
+        </div>
+        <a class="text-link" href="#contact">サービスについて相談する <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="service-grid">
+        <article class="service">
+          <span class="service-number">01 / DISCOVER</span>
+          <h3>課題を見つける</h3>
+          <p>対話を重ねながら、現状を整理。進むべき方向を一緒に描きます。</p>
+        </article>
+        <article class="service">
+          <span class="service-number">02 / DESIGN</span>
+          <h3>解決策をつくる</h3>
+          <p>目的に合わせたプランを設計し、実行できる形に落とし込みます。</p>
+        </article>
+        <article class="service">
+          <span class="service-number">03 / GROW</span>
+          <h3>一緒に育てる</h3>
+          <p>公開や導入をゴールにせず、その先の成長まで伴走します。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="wrap about-grid">
+        <img class="about-image" src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=85" alt="テーブルを囲んでアイデアを話し合うチーム" loading="lazy">
+        <div class="about-copy">
+          <p class="section-label">WHO WE ARE</p>
+          <h2 class="section-heading" id="about-title">一緒に考え、<br>一緒につくるチーム。</h2>
+          <p>専門性の異なるメンバーが集まり、企画から実現までをワンチームでサポート。小さな相談から、まだ言葉になっていない構想まで歓迎します。</p>
+          <div class="stats">
+            <div class="stat"><strong>12<span>+</span></strong><span>年の実績</span></div>
+            <div class="stat"><strong>240<span>+</span></strong><span>プロジェクト</span></div>
+            <div class="stat"><strong>96<span>%</span></strong><span>継続率</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-inner">
+        <div>
+          <p class="section-label">LET'S TALK</p>
+          <h2 id="contact-title">まずは、気軽に<br>お話ししませんか。</h2>
+        </div>
+        <a class="button" href="mailto:hello@example.com">お問い合わせ <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">Y</span> YOUR BRAND</a>
+      <div class="footer-meta">
+        <a href="#services">サービス</a>
+        <a href="#about">私たちについて</a>
+        <a href="#contact">お問い合わせ</a>
+        <span class="copyright">© 2026 YOUR BRAND</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.nav-links');
+
+    menuButton.addEventListener('click', () => {
+      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isExpanded));
+      menuButton.setAttribute('aria-label', isExpanded ? 'メニューを開く' : 'メニューを閉じる');
+      navigation.classList.toggle('is-open', !isExpanded);
+    });
+
+    navigation.addEventListener('click', (event) => {
+      if (event.target.closest('a')) {
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'メニューを開く');
+        navigation.classList.remove('is-open');
+      }
+    });
+  </script>
+</body>
+</html>
