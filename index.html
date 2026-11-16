@@ -1,337 +1,146 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#075a89">
-  <meta name="description" content="船橋市公式ホームページ。くらしや手続き、市政情報、イベントなどをご案内します。">
-  <title>船橋市公式ホームページ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      color-scheme: light;
-      --ink: #202b33;
-      --muted: #586873;
-      --green: #075a89;
-      --green-light: #eaf5fa;
-      --blue: #064b70;
-      --line: #d3e1e8;
-      --paper: #fff;
-      --soft: #f4f8fa;
-      --accent: #c74335;
-      --content: 1160px;
-      font-family: "Noto Sans JP", sans-serif;
-      font-synthesis: none;
-      text-rendering: optimizeLegibility;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; color: var(--ink); background: var(--paper); font-size: 15px; line-height: 1.8; }
-    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-    a:hover { color: var(--blue); }
-    button, input { font: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    .wrap { width: min(var(--content), calc(100% - 48px)); margin-inline: auto; }
-    .skip-link { position: absolute; z-index: 20; top: -60px; left: 12px; padding: 8px 14px; background: white; color: var(--ink); }
-    .skip-link:focus { top: 12px; }
-
-    .utility { color: white; background: #12394f; font-size: 12px; }
-    .utility-inner { min-height: 36px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .utility p { margin: 0; }
-    .utility-links { display: flex; gap: 20px; }
-    .utility a { color: white; }
-    .masthead { background: var(--paper); }
-    .masthead-inner { min-height: 106px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
-    .identity { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-    .crest { width: 52px; height: 52px; display: grid; place-items: center; flex: 0 0 auto; border: 2px solid var(--green); border-radius: 50%; color: var(--green); font-size: 22px; font-weight: 700; }
-    .identity small { display: block; color: var(--muted); font-size: 12px; line-height: 1.4; }
-    .identity strong { display: block; color: var(--green); font-size: 27px; font-weight: 700; line-height: 1.4; }
-    .search { width: min(390px, 42%); }
-    .search label { display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; }
-    .search-row { display: flex; min-height: 42px; }
-    .search input { width: 100%; min-width: 0; padding: 7px 12px; border: 1px solid #89958e; border-right: 0; border-radius: 2px 0 0 2px; background: white; }
-    .search button { min-width: 78px; border: 0; border-radius: 0 2px 2px 0; color: white; background: var(--green); font-weight: 700; cursor: pointer; }
-    .search button:hover { background: #06476b; }
-    .search-status { min-height: 1.5em; margin: 3px 0 0; color: var(--blue); font-size: 12px; }
-
-    .main-nav { color: white; background: var(--green); }
-    .nav-inner { display: flex; align-items: stretch; justify-content: space-between; }
-    .nav-links { display: flex; align-items: stretch; }
-    .nav-links a { display: flex; min-height: 54px; align-items: center; padding: 0 19px; border-right: 1px solid rgb(255 255 255 / 18%); color: white; font-size: 14px; font-weight: 600; text-decoration: none; }
-    .nav-links a:first-child { border-left: 1px solid rgb(255 255 255 / 18%); }
-    .nav-links a:hover, .nav-links a:focus-visible { background: #06476b; }
-    .menu-toggle { display: none; min-height: 46px; align-items: center; gap: 9px; padding: 0 14px; border: 1px solid rgb(255 255 255 / 55%); border-radius: 2px; color: white; background: transparent; font-weight: 600; cursor: pointer; }
-    .menu-icon { display: grid; gap: 4px; }
-    .menu-icon span { width: 17px; height: 2px; background: currentColor; }
-
-    .emergency { border-bottom: 1px solid #edc8a9; background: #fff8f1; }
-    .emergency-inner { min-height: 52px; display: flex; align-items: center; gap: 14px; }
-    .emergency-label { padding: 2px 9px; color: white; background: var(--accent); font-size: 12px; font-weight: 700; white-space: nowrap; }
-    .emergency a { color: #75411f; font-size: 13px; font-weight: 600; }
-    .emergency-date { margin-left: auto; color: #6d4c4c; font-size: 12px; white-space: nowrap; }
-
-    .hero { display: grid; grid-template-columns: 1.12fr .88fr; min-height: 325px; margin-top: 24px; background: var(--green-light); }
-    .hero-copy { display: flex; flex-direction: column; align-items: start; justify-content: center; padding: 38px 44px; }
-    .hero-kicker { margin: 0 0 6px; color: var(--green); font-size: 13px; font-weight: 700; }
-    .hero h1 { margin: 0; color: #12394f; font-size: clamp(29px, 3.3vw, 42px); line-height: 1.55; font-weight: 700; }
-    .hero-copy > p:last-of-type { max-width: 480px; margin: 10px 0 22px; color: #425660; font-size: 14px; }
-    .hero-link { display: inline-flex; min-height: 44px; align-items: center; gap: 16px; padding: 7px 15px; border: 1px solid var(--green); color: var(--green); background: white; font-size: 13px; font-weight: 700; text-decoration: none; }
-    .hero-link:hover { color: white; background: var(--green); }
-    .hero-photo { width: 100%; height: 100%; min-height: 325px; display: grid; place-items: center; border: 1px dashed #9bb9c8; color: #567482; background: linear-gradient(135deg, #e1edf2, #f3f7f9); font-size: 18px; font-weight: 700; letter-spacing: .08em; }
-
-    .quick-area { padding: 30px 0 36px; border-bottom: 1px solid var(--line); }
-    .section-title { margin: 0 0 16px; padding-left: 12px; border-left: 4px solid var(--green); font-size: 20px; line-height: 1.4; font-weight: 700; }
-    .quick-links { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-    .quick-links a { min-height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 15px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: white; font-size: 14px; font-weight: 600; text-decoration: none; }
-    .quick-links a:hover { background: var(--soft); }
-    .arrow { color: var(--green); font-size: 18px; line-height: 1; }
-
-    .news-area { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(250px, .8fr); gap: 44px; padding: 38px 0 48px; }
-    .news-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
-    .news-header .section-title { margin: 0; }
-    .more-link { color: var(--blue); font-size: 13px; font-weight: 600; white-space: nowrap; }
-    .news-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
-    .news-list li { display: grid; grid-template-columns: 105px 92px 1fr; align-items: start; gap: 12px; padding: 13px 5px; border-bottom: 1px solid var(--line); }
-    .news-date { color: var(--muted); font-size: 12px; white-space: nowrap; }
-    .news-category { justify-self: start; padding: 0 7px; border: 1px solid #b5cbd6; color: #244b60; font-size: 11px; line-height: 1.8; white-space: nowrap; }
-    .news-list a { font-size: 13px; line-height: 1.75; }
-    .side-heading { margin: 0; padding: 11px 14px; color: white; background: var(--blue); font-size: 16px; }
-    .side-links { margin: 0; padding: 0; list-style: none; border: 1px solid var(--line); border-top: 0; }
-    .side-links a { display: flex; min-height: 49px; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 13px; border-bottom: 1px solid var(--line); font-size: 13px; font-weight: 500; text-decoration: none; }
-    .side-links li:last-child a { border-bottom: 0; }
-    .side-links a:hover { background: var(--soft); }
-
-    .topics { padding: 30px 0 42px; background: var(--soft); }
-    .topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .topic { min-height: 114px; display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 18px 20px; border: 1px solid var(--line); border-top: 3px solid var(--green); background: white; text-decoration: none; }
-    .topic strong { font-size: 16px; }
-    .topic span { color: var(--muted); font-size: 12px; }
-
-    footer { padding: 25px 0 18px; color: white; background: #12394f; }
-    .footer-top { display: flex; align-items: start; justify-content: space-between; gap: 30px; padding-bottom: 20px; }
-    .footer-brand { font-size: 18px; font-weight: 700; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 8px 22px; }
-    .footer-links a { color: white; font-size: 12px; }
-    .copyright { margin: 0; padding-top: 12px; border-top: 1px solid rgb(255 255 255 / 22%); color: rgb(255 255 255 / 76%); font-size: 11px; }
-
-    @media (max-width: 760px) {
-      body { font-size: 14px; }
-      .wrap { width: min(var(--content), calc(100% - 32px)); }
-      .utility-inner { min-height: 34px; }
-      .utility-links { gap: 12px; }
-      .utility-links a:first-child { display: none; }
-      .masthead-inner { min-height: 82px; flex-wrap: wrap; gap: 12px; padding: 13px 0; }
-      .identity { gap: 10px; }
-      .crest { width: 42px; height: 42px; font-size: 18px; }
-      .identity small { font-size: 10px; }
-      .identity strong { font-size: 22px; }
-      .search { width: 100%; }
-      .search label { display: none; }
-      .search-status { position: absolute; }
-      .nav-inner { min-height: 58px; justify-content: end; align-items: center; }
-      .menu-toggle { display: inline-flex; }
-      .nav-links { position: absolute; z-index: 5; top: auto; left: 0; right: 0; display: none; flex-direction: column; padding: 6px 16px 14px; background: var(--green); }
-      .nav-links.is-open { display: flex; }
-      .nav-links a, .nav-links a:first-child { min-height: 48px; border: 0; border-bottom: 1px solid rgb(255 255 255 / 20%); }
-      .emergency-inner { align-items: start; flex-wrap: wrap; gap: 8px 10px; padding: 10px 0; }
-      .emergency-label { font-size: 11px; }
-      .emergency a { flex: 1; font-size: 12px; }
-      .emergency-date { width: 100%; margin-left: 0; text-align: right; font-size: 10px; }
-      .hero { grid-template-columns: 1fr; margin-top: 16px; }
-      .hero-copy { padding: 25px 22px 23px; }
-      .hero h1 { font-size: 29px; }
-      .hero-copy > p:last-of-type { margin: 7px 0 15px; font-size: 13px; }
-      .hero-photo { min-height: 0; height: auto; aspect-ratio: 1.8; }
-      .quick-area { padding: 24px 0 28px; }
-      .section-title { font-size: 18px; }
-      .quick-links { grid-template-columns: repeat(2, 1fr); }
-      .quick-links a { min-height: 56px; padding: 9px 11px; font-size: 12px; }
-      .news-area { grid-template-columns: 1fr; gap: 26px; padding: 29px 0 34px; }
-      .news-list li { grid-template-columns: 92px 78px 1fr; gap: 8px; padding: 11px 2px; }
-      .news-date { font-size: 10px; }
-      .news-category { font-size: 10px; }
-      .news-list a { font-size: 12px; }
-      .topics { padding: 26px 0 32px; }
-      .topic-grid { grid-template-columns: 1fr; gap: 10px; }
-      .topic { min-height: 82px; padding: 13px 15px; }
-      .footer-top { flex-direction: column; gap: 12px; }
-      .footer-links { gap: 8px 16px; }
-    }
-
-    @media (max-width: 390px) {
-      .news-list li { grid-template-columns: 1fr auto; }
-      .news-list a { grid-column: 1 / -1; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>船橋市 地域紹介｜実際に行った5スポット</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; color: #243038; background: #f4f7f5; line-height: 1.8; }
+  .notice { background: #fff3cd; color: #664d03; text-align: center; padding: 8px 12px; font-size: 14px; }
+  header { background: #17604a; color: #fff; padding: 18px 20px; }
+  header .site { font-size: 14px; opacity: .9; }
+  header h1 { font-size: 26px; }
+  nav { background: #0f4a39; padding: 8px 20px; }
+  nav a { color: #fff; margin-right: 18px; text-decoration: none; font-size: 15px; }
+  .hero { background: linear-gradient(135deg, #dff0e6, #dbeafe); padding: 48px 20px; text-align: center; }
+  .hero h2 { font-size: 32px; margin-bottom: 10px; }
+  .hero p { max-width: 720px; margin: 0 auto; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 48px; }
+  section { margin-bottom: 40px; }
+  h2.sec { font-size: 24px; border-left: 6px solid #17604a; padding-left: 10px; margin-bottom: 14px; }
+  .card { background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .card h3 { font-size: 21px; margin-bottom: 6px; }
+  .badge { display: inline-block; background: #17604a; color: #fff; font-size: 12px; border-radius: 999px; padding: 2px 10px; margin-bottom: 8px; }
+  .photo-slot { border: 2px dashed #9db8ad; border-radius: 10px; background: #eef4f1; color: #55705f; text-align: center; padding: 26px 10px; margin: 12px 0; font-size: 14px; }
+  table.info { border-collapse: collapse; width: 100%; margin-top: 10px; font-size: 15px; }
+  table.info th, table.info td { border: 1px solid #d5e0da; padding: 6px 10px; text-align: left; vertical-align: top; }
+  table.info th { background: #eef4f1; width: 110px; }
+  .point { background: #fff8e1; border-radius: 10px; padding: 16px 20px; }
+  footer { background: #243038; color: #dfe7e3; padding: 24px 20px; font-size: 14px; }
+  footer .inner { max-width: 960px; margin: 0 auto; }
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main">本文へ移動</a>
-  <div class="utility">
-    <div class="wrap utility-inner">
-      <p>船橋市公式ホームページ</p>
-      <div class="utility-links">
-        <a href="#main">本文へ</a>
-        <a href="#footer">サイトマップ</a>
-        <a href="#footer">Foreign Language</a>
-      </div>
+<div class="notice">※このページは課題で作成した地域紹介ページです。船橋市の公式サイトではありません。</div>
+<header>
+  <div class="site">地域紹介 ― 千葉県船橋市</div>
+  <h1>船橋市ってどんなところ？</h1>
+</header>
+<nav>
+  <a href="#about">船橋市の概要</a>
+  <a href="#spots">行った場所</a>
+  <a href="#route">まわり方</a>
+  <a href="#access">アクセス</a>
+</nav>
+<div class="hero">
+  <h2>実際に行った5スポットで紹介する船橋市</h2>
+  <p>千葉県北西部、東京湾に面した船橋市は、東京にも千葉にも出やすい交通の便利なまちです。このページでは、実際に訪れた5つの場所から、船橋の魅力を紹介します。</p>
+</div>
+<main>
+  <section id="about">
+    <h2 class="sec">船橋市の概要</h2>
+    <p>船橋市は千葉県の北西部に位置し、東京湾に面しています。都心へのアクセスが良い住宅都市でありながら、海や公園などの自然、大きな商業施設や競馬場といったレジャー施設もそろっています。特産品としては、梨や小松菜、東京湾で獲れるホンビノス貝などが知られています。</p>
+    <div class="point" style="margin-top:12px;">
+      <strong>このページの推しポイント：</strong>船橋市には、中央競馬（JRA）の中山競馬場と、地方競馬の船橋競馬場という、<strong>2つの競馬場</strong>があります。1つの市に競馬場が2つあるのは全国的にも珍しいことです。
     </div>
+  </section>
+
+  <section id="spots">
+    <h2 class="sec">実際に行った場所（5スポット）</h2>
+
+    <article class="card">
+      <span class="badge">行った場所 1</span>
+      <h3>🏇 中山競馬場</h3>
+      <p>JRA（日本中央競馬会）の競馬場で、日本の4大競馬場のひとつです。年末のグランプリ「有馬記念」をはじめ、皐月賞、スプリンターズステークス、ホープフルステークスといった大きなGⅠレースが開催されます。ゴール前の急な坂（中山の坂）が名勝負を生むことでも有名です。</p>
+      <div class="photo-slot">📷 写真はここに挿入できます（自分で撮影した写真のみ）</div>
+      <table class="info">
+        <tr><th>所在地</th><td>船橋市古作1-1-1</td></tr>
+        <tr><th>アクセス</th><td>JR武蔵野線「船橋法典」駅から専用地下道で徒歩約10分／JR「西船橋」駅からバス約15分</td></tr>
+        <tr><th>見どころ</th><td>有馬記念・皐月賞などのGⅠレース、ゴール前の急坂</td></tr>
+      </table>
+    </article>
+
+    <article class="card">
+      <span class="badge">行った場所 2</span>
+      <h3>🏇 船橋競馬場</h3>
+      <p>1950年に開設された、地方競馬の競馬場です。2015年からはナイター競馬「ハートビートナイター」が行われ、夜にライトに照らされた馬場でレースを楽しめます。毎年ゴールデンウィークには、ダートの大きなレース「かしわ記念（JpnⅠ）」が開催されます。コースのカーブが特徴的な「スパイラルカーブ」を採用していることでも知られています。中山競馬場が「中央競馬のビッグレースの舞台」なら、こちらは「夜も楽しめる、距離の近い地方競馬」という違いがあります。</p>
+      <div class="photo-slot">📷 写真はここに挿入できます（自分で撮影した写真のみ）</div>
+      <table class="info">
+        <tr><th>所在地</th><td>船橋市若松1-2-1</td></tr>
+        <tr><th>アクセス</th><td>京成線「船橋競馬場」駅から徒歩約5分／JR京葉線「南船橋」駅から徒歩約10分</td></tr>
+        <tr><th>見どころ</th><td>ハートビートナイター（ナイター競馬）、かしわ記念</td></tr>
+      </table>
+    </article>
+
+    <article class="card">
+      <span class="badge">行った場所 3</span>
+      <h3>🛍️ ららぽーとTOKYO-BAY</h3>
+      <p>1981年に開業した、ららぽーとの1号店です。日本で本格的な郊外型ショッピングセンターの草分けとされ、今も約440店舗が入る大規模な商業施設です。買い物だけでなく、食事や映画も楽しめるため、家族連れや若い人でにぎわいます。船橋競馬場からも近く、同じ日に両方まわることもできます。</p>
+      <div class="photo-slot">📷 写真はここに挿入できます（自分で撮影した写真のみ）</div>
+      <table class="info">
+        <tr><th>所在地</th><td>船橋市浜町2-1-1</td></tr>
+        <tr><th>アクセス</th><td>JR京葉線・武蔵野線「南船橋」駅から徒歩約5分／京成線「船橋競馬場」駅から徒歩約10分</td></tr>
+        <tr><th>見どころ</th><td>約440店舗のショッピング、食事、映画館</td></tr>
+      </table>
+    </article>
+
+    <article class="card">
+      <span class="badge">行った場所 4</span>
+      <h3>🌷 ふなばしアンデルセン公園</h3>
+      <p>童話作家アンデルセンの出身地で、船橋市の姉妹都市であるデンマーク・オーデンセ市にちなんだ公園です。園内は、風車のある「メルヘンの丘」、アスレチックの「ワンパク王国」、ものづくり体験ができる「子ども美術館」など、5つのゾーンに分かれています。四季折々の花も楽しめ、子どもから大人まで一日過ごせる公園です。</p>
+      <div class="photo-slot">📷 写真はここに挿入できます（自分で撮影した写真のみ）</div>
+      <table class="info">
+        <tr><th>所在地</th><td>船橋市金堀町525</td></tr>
+        <tr><th>アクセス</th><td>新京成線「三咲」駅などからバスで「アンデルセン公園」下車</td></tr>
+        <tr><th>見どころ</th><td>風車と花の景色、子ども美術館、フィールドアスレチック</td></tr>
+      </table>
+    </article>
+
+    <article class="card">
+      <span class="badge">行った場所 5</span>
+      <h3>🚉 西船橋駅</h3>
+      <p>船橋市への入口になる大きな駅です。JR中央・総武線（各駅停車）・武蔵野線・京葉線、東京メトロ東西線、東葉高速鉄道東葉高速線の、3社5路線が乗り入れるターミナル駅で、利用者数は千葉県内で1位です。東京方面へも、千葉・幕張方面へも、武蔵野線で埼玉方面へも行けるため、船橋観光の出発点としても便利な駅です。今回紹介した中山競馬場へ向かうときも、この駅から武蔵野線に乗り換えられます。</p>
+      <div class="photo-slot">📷 写真はここに挿入できます（自分で撮影した写真のみ）</div>
+      <table class="info">
+        <tr><th>所在地</th><td>船橋市西船4丁目</td></tr>
+        <tr><th>乗り入れ</th><td>JR中央・総武線（各駅停車）／JR武蔵野線／JR京葉線／東京メトロ東西線／東葉高速線</td></tr>
+        <tr><th>見どころ</th><td>3社5路線が集まる交通の要所。船橋観光の玄関口</td></tr>
+      </table>
+    </article>
+  </section>
+
+  <section id="route">
+    <h2 class="sec">まわり方の例</h2>
+    <p>南船橋エリアでは、船橋競馬場とららぽーとTOKYO-BAYが近く、競馬と買い物を同じ日に楽しめます。中山競馬場へは、西船橋駅から武蔵野線で船橋法典駅へ向かうルートが分かりやすいです。アンデルセン公園は市の北側にあるため、別の日に分けて訪れるのがおすすめです。</p>
+  </section>
+
+  <section id="access">
+    <h2 class="sec">アクセス</h2>
+    <p>東京方面からは、JR中央・総武線（各駅停車）や東京メトロ東西線で西船橋駅・船橋駅へアクセスできます。京葉線を使えば東京駅から南船橋駅方面へも出られます。</p>
+  </section>
+
+  <section>
+    <h2 class="sec">まとめ</h2>
+    <p>船橋市は、交通の便利さだけでなく、2つの競馬場、大型商業施設、北欧の雰囲気を楽しめる公園など、性格の違う楽しみ方が集まったまちでした。実際に訪れた場所を通して見ると、公式情報だけでは分からない船橋の多面性が伝わってきます。</p>
+  </section>
+</main>
+<footer>
+  <div class="inner">
+    <p>このページは課題として作成した地域紹介ページです。船橋市および各施設の公式ページではありません。</p>
+    <p>写真について：著作権に配慮し、このページでは外部の写真は使用していません。写真を載せる場合は、自分で撮影した写真のみを挿入してください。</p>
+    <p>各施設の所在地・アクセスなどの情報は、各施設の公式サイト等をもとに記載しています。訪問の際は最新の情報をご確認ください。</p>
   </div>
-
-  <header>
-    <div class="masthead">
-      <div class="wrap masthead-inner">
-        <a class="identity" href="#home" aria-label="船橋市公式ホームページ トップ">
-          <span class="crest" aria-hidden="true">船</span>
-          <span><small>千葉県</small><strong>船橋市ホームページ</strong></span>
-        </a>
-        <form class="search" role="search" id="site-search">
-          <label for="search-query">サイト内検索</label>
-          <div class="search-row">
-            <input id="search-query" name="q" type="search" placeholder="キーワードを入力" autocomplete="off">
-            <button type="submit">検索</button>
-          </div>
-          <p class="search-status" id="search-status" aria-live="polite"></p>
-        </form>
-      </div>
-    </div>
-    <nav class="main-nav" aria-label="メインメニュー">
-      <div class="wrap nav-inner">
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
-          <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
-          メニュー
-        </button>
-        <div class="nav-links" id="nav-links">
-          <a href="#life">くらし・手続き</a>
-          <a href="#news">市政情報</a>
-          <a href="#topics">観光・イベント</a>
-          <a href="#topics">産業・しごと</a>
-          <a href="#footer">市の紹介</a>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <main id="main" class="wrap">
-    <div class="emergency" role="status">
-      <div class="emergency-inner">
-        <span class="emergency-label">防災情報</span>
-        <a href="#topics">災害への備え・避難場所など、防災に関する情報はこちら</a>
-        <span class="emergency-date">情報を確認する</span>
-      </div>
-    </div>
-
-    <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="hero-kicker">海と緑に囲まれた、暮らしやすいまち</p>
-        <h1 id="hero-title">人もまちも、<br>ますます元気に。</h1>
-        <p>ふなばしの暮らしに役立つ情報や、市からのお知らせ、まちの魅力をご案内します。</p>
-        <a class="hero-link" href="#topics">船橋市の魅力を知る <span class="arrow" aria-hidden="true">→</span></a>
-      </div>
-      <div class="hero-photo" role="img" aria-label="NO image">NO image</div>
-    </section>
-
-    <section class="quick-area" id="life" aria-labelledby="quick-title">
-      <h2 class="section-title" id="quick-title">目的から探す</h2>
-      <div class="quick-links">
-        <a href="#news">戸籍・住民票・届出 <span class="arrow" aria-hidden="true">›</span></a>
-        <a href="#news">子育て・教育 <span class="arrow" aria-hidden="true">›</span></a>
-        <a href="#news">健康・福祉・介護 <span class="arrow" aria-hidden="true">›</span></a>
-        <a href="#news">ごみ・環境・住まい <span class="arrow" aria-hidden="true">›</span></a>
-        <a href="#news">防災・安全・消防 <span class="arrow" aria-hidden="true">›</span></a>
-        <a href="#news">税金・保険・年金 <span class="arrow" aria-hidden="true">›</span></a>
-        <a href="#news">施設・窓口案内 <span class="arrow" aria-hidden="true">›</span></a>
-        <a href="#news">各種相談窓口 <span class="arrow" aria-hidden="true">›</span></a>
-      </div>
-    </section>
-
-    <div class="news-area">
-      <section id="news" aria-labelledby="news-title">
-        <div class="news-header">
-          <h2 class="section-title" id="news-title">新着情報</h2>
-          <a class="more-link" href="#news">一覧を見る →</a>
-        </div>
-        <ul class="news-list">
-          <li><time class="news-date" datetime="2026-11-09">2026年11月9日</time><span class="news-category">お知らせ</span><a href="#news">広報ふなばし 11月15日号を発行しました</a></li>
-          <li><time class="news-date" datetime="2026-11-07">2026年11月7日</time><span class="news-category">募集</span><a href="#news">市民意識調査へのご協力をお願いします</a></li>
-          <li><time class="news-date" datetime="2026-11-05">2026年11月5日</time><span class="news-category">イベント</span><a href="#news">市内の秋のイベント情報をご案内します</a></li>
-          <li><time class="news-date" datetime="2026-11-01">2026年11月1日</time><span class="news-category">市政情報</span><a href="#news">令和8年度 船橋市の取り組みをお知らせします</a></li>
-        </ul>
-      </section>
-
-      <aside aria-labelledby="guide-title">
-        <h2 class="side-heading" id="guide-title">市からのご案内</h2>
-        <ul class="side-links">
-          <li><a href="#topics">市長のページ <span class="arrow" aria-hidden="true">›</span></a></li>
-          <li><a href="#topics">市の組織・各課の窓口 <span class="arrow" aria-hidden="true">›</span></a></li>
-          <li><a href="#topics">市議会 <span class="arrow" aria-hidden="true">›</span></a></li>
-          <li><a href="#topics">広報・広聴 <span class="arrow" aria-hidden="true">›</span></a></li>
-          <li><a href="#topics">市の計画・統計情報 <span class="arrow" aria-hidden="true">›</span></a></li>
-        </ul>
-      </aside>
-    </div>
-
-    <section class="topics" id="topics" aria-labelledby="topics-title">
-      <h2 class="section-title" id="topics-title">注目情報</h2>
-      <div class="topic-grid">
-        <a class="topic" href="#topics"><strong>防災・緊急情報</strong><span>災害への備えと市内の避難場所</span></a>
-        <a class="topic" href="#topics"><strong>ふなばしの魅力・イベント</strong><span>市内の見どころや催しをご紹介</span></a>
-        <a class="topic" href="#topics"><strong>採用・職員募集</strong><span>船橋市職員採用と募集案内</span></a>
-      </div>
-    </section>
-  </main>
-
-  <footer id="footer">
-    <div class="wrap">
-      <div class="footer-top">
-        <div class="footer-brand">船橋市公式ホームページ</div>
-        <nav class="footer-links" aria-label="フッターメニュー">
-          <a href="#footer">サイトの使い方</a>
-          <a href="#footer">個人情報の取り扱い</a>
-          <a href="#footer">アクセシビリティ方針</a>
-          <a href="#footer">お問い合わせ</a>
-        </nav>
-      </div>
-      <p class="copyright">船橋市役所 〒273-8501 千葉県船橋市湊町2-10-25　電話：047-436-2111（代表）</p>
-    </div>
-  </footer>
-
-  <script>
-    const menuButton = document.querySelector('.menu-toggle');
-    const navigation = document.querySelector('.nav-links');
-
-    menuButton.addEventListener('click', () => {
-      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-      menuButton.setAttribute('aria-expanded', String(!isExpanded));
-      navigation.classList.toggle('is-open', !isExpanded);
-    });
-
-    navigation.addEventListener('click', (event) => {
-      if (event.target.closest('a')) {
-        menuButton.setAttribute('aria-expanded', 'false');
-        navigation.classList.remove('is-open');
-      }
-    });
-
-    document.querySelector('#site-search').addEventListener('submit', (event) => {
-      event.preventDefault();
-      const query = document.querySelector('#search-query').value.trim().toLocaleLowerCase();
-      const status = document.querySelector('#search-status');
-      if (!query) {
-        status.textContent = '検索キーワードを入力してください。';
-        return;
-      }
-      const matches = [...document.querySelectorAll('main h1, main h2, main h3, main a')]
-        .filter((element) => element.textContent.toLocaleLowerCase().includes(query));
-      status.textContent = matches.length ? `ページ内に「${query}」を含む項目が${matches.length}件あります。` : `「${query}」に一致する項目は見つかりませんでした。`;
-      if (matches.length) matches[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-  </script>
+</footer>
 </body>
 </html>
